@@ -14,8 +14,9 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: 'My Restore'
   inputs:
-    command: 'My Restore'
+    command: 'restore'
     projects: |
       **/*.csproj
       !**/*SeleniumUiTests.csproj
