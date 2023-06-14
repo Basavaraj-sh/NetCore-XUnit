@@ -25,10 +25,10 @@ steps:
   inputs:
     command: 'build'
     projects: |
-      **/*.csproj
+      ./Tutorial 1 and 2/MyAppT/MyAppT/*.csproj
 - task: DotNetCoreCLI@2
   displayName: 'My Test'
   inputs:
     command: 'test'
-    projects: './api/XUnitTest/XUnitTest.csproj'
+    projects: './Tutorial 1 and 2/MyAppT/TestingProject/*.csproj'
 #    arguments: '''--configuration $(buildConfiguration) --collect "Code coverage"'''
