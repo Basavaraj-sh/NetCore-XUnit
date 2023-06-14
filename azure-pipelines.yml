@@ -30,5 +30,5 @@ steps:
   displayName: 'My Test'
   inputs:
     command: 'test'
-    projects: '''**/XUnitTest/*.csproj'''
+    projects: './api/XUnitTest/XUnitTest.csproj'
 #    arguments: '''--configuration $(buildConfiguration) --collect "Code coverage"'''
