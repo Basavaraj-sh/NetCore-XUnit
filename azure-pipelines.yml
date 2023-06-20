@@ -13,22 +13,25 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-#- task: DotNetCoreCLI@2
-#  displayName: 'My Restore'
-#  inputs:
-#    command: 'restore'
-#    projects: |
-#      **/*.csproj
-#    feedsToUse: 'select'
 - task: DotNetCoreCLI@2
-  displayName: 'My Build'
+  displayName: 'Build'
   inputs:
     command: 'build'
     projects: |
-      ./Tutorial 1 and 2/MyAppT/MyAppT/*.csproj
-- task: DotNetCoreCLI@2
-  displayName: 'My Test'
+      ./api/APITest.Presentation.WebAPI/APITest.Presentation.WebAPI.csproj
+
+- script: dotnet test './api/XUnitTest/XUnitTest.csproj' --logger trx --configuration $(buildConfiguration) --collect "Code coverage"
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test results'
   inputs:
-    command: 'test'
-    projects: './Tutorial 1 and 2/MyAppT/TestingProject/*.csproj'
-#    arguments: '''--configuration $(buildConfiguration) --collect "Code coverage"'''
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+
+- task: BuildQualityChecks@9
+  displayName: 'Code Coverage Quality Gate'
+  inputs:
+    checkCoverage: true
+    coverageFailOption: 'fixed'
+    coverageType: 'blocks'
+    coverageThreshold: '60'
