@@ -25,7 +25,7 @@ steps:
     projects: |
       ./api/APITest.Presentation.WebAPI/APITest.Presentation.WebAPI.csproj
 
-- script: dotnet test './api/XUnitTest/XUnitTest.csproj' --logger trx --configuration $(buildConfiguration) --collect "Code coverage"
+- script: dotnet test './api/XUnitTest/XUnitTest.csproj' --logger trx --configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
 
 - task: PublishTestResults@2
   displayName: 'Publish Test results'
