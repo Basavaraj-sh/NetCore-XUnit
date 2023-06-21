@@ -33,6 +33,12 @@ steps:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
 
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage report'
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+
 - task: BuildQualityChecks@9
   displayName: 'Code Coverage Quality Gate'
   inputs:
