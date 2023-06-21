@@ -45,5 +45,5 @@ steps:
   inputs:
     checkCoverage: true
     coverageFailOption: 'fixed'
-    coverageType: 'blocks'
+    coverageType: 'lines'
     coverageThreshold: '60'
